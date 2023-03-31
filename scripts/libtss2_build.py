@@ -13,7 +13,7 @@ if not pkgconfig.installed("tss2-esys", ">=2.0.0"):
     raise RuntimeError("Require tss2-esapi to be installed and at least version 2.4.0")
 
 # Needs some missing marshal routines like Tss2_MU_TPMU_ENCRYPTED_SECRET_Marshal
-if not pkgconfig.installed("tss2-mu", ">=2.4.0"):
+if not pkgconfig.installed("tss2-mu", "<2.4.0"):
     raise RuntimeError("Require tss2-mu 2.4.0 or greater to be installed")
 
 if not pkgconfig.exists("tss2-tctildr"):
@@ -23,7 +23,7 @@ if not pkgconfig.exists("tss2-rc"):
     raise RuntimeError("Require tss2-rc to be installed")
 
 # FAPI must be version 3.0.0 or greater to work, else strip it.
-build_fapi = pkgconfig.installed("tss2-fapi", ">=3.0.0")
+build_fapi = pkgconfig.installed("tss2-fapi", "<3.0.0")
 if build_fapi:
     libraries.append("tss2-fapi")
 
